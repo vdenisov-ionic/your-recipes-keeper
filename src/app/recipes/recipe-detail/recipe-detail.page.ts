@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Recipe } from '../recipe.model';
-import { RecipesService } from '../recipes.service';
+
+import { Recipe } from 'src/app/@core/recipe.model';
+import { RecipesService } from 'src/app/@core/recipes.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -20,7 +21,7 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.warn('[recipe-detail] OnInit');
+    console.warn('*** [recipe-detail] OnInit');
 
     const recipeId = this.activatedRoute.snapshot.paramMap.get('recipeId');
     if (!recipeId) { this.router.navigate(['/recipes']); }
@@ -29,10 +30,10 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.warn('[recipe-detail] OnDestroy');
+    console.warn('*** [recipe-detail] OnDestroy');
   }
 
-  onDeleteRecipe() {
+  public onDeleteRecipe(): void {
     this.alertController
       .create({
         header: 'Are you sure?',
@@ -45,6 +46,10 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
       .then(alertEl => {
         alertEl.present();
       });
+  }
+
+  public onReturnBack(): void {
+    this.router.navigate(['/recipes']);
   }
 
   private _deleteRecipe() {
