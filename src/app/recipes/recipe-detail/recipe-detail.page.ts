@@ -21,7 +21,7 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.warn('*** [recipe-detail] OnInit');
+    console.log('*** [recipe-detail] OnInit');
 
     const recipeId = this.activatedRoute.snapshot.paramMap.get('recipeId');
     if (!recipeId) { this.router.navigate(['/recipes']); }
@@ -30,7 +30,7 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.warn('*** [recipe-detail] OnDestroy');
+    console.log('*** [recipe-detail] OnDestroy');
   }
 
   public onDeleteRecipe(): void {

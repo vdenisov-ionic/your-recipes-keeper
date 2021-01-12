@@ -17,13 +17,17 @@ export class RecipesListPage implements OnInit, OnDestroy {
     private recipesService: RecipesService,
   ) { }
 
+  ionViewWillEnter() {
+    this.ngOnInit();
+  }
+
   ngOnInit() {
-    console.warn('*** [recipes-list] OnInit');
+    console.log('*** [recipes-list] OnInit');
     this.recipes = this.recipesService.getAllRecipes();
   }
 
   ngOnDestroy() {
-    console.warn('*** [recipes-list] OnDestroy');
+    console.log('*** [recipes-list] OnDestroy');
   }
 
   public onSelectRecipe(recipeId: string): void {
