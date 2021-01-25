@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 
 import { Recipe } from 'src/app/@core/recipe.model';
 import { RecipesService } from 'src/app/@core/recipes.service';
@@ -11,21 +11,18 @@ import { RecipesService } from 'src/app/@core/recipes.service';
   styleUrls: ['./recipe-detail.page.scss'],
 })
 export class RecipeDetailPage implements OnInit, OnDestroy {
-  loadedRecipe: Recipe;
+  public loadedRecipe: Recipe;
 
   constructor(
-    private router: Router,
     private activatedRoute: ActivatedRoute,
     private recipesService: RecipesService,
     private alertController: AlertController,
+    public navCtrl: NavController,
   ) { }
 
   ngOnInit() {
     console.log('*** [recipe-detail] OnInit');
-
     const recipeId = this.activatedRoute.snapshot.paramMap.get('recipeId');
-    if (!recipeId) { this.router.navigate(['/recipes']); }
-
     this.loadedRecipe = this.recipesService.getRecipe(recipeId);
   }
 
@@ -49,11 +46,13 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   }
 
   public onReturnBack(): void {
-    this.router.navigate(['/recipes']);
+    // this.router.navigate(['/recipes']);
+    this.navCtrl.navigateRoot(`/recipes`);
   }
 
   private _deleteRecipe() {
     this.recipesService.deleteRecipe(this.loadedRecipe.id);
-    this.router.navigate(['/recipes']);
+    // this.router.navigate(['/recipes']);
+    this.navCtrl.navigateRoot(`/recipes`);
   }
 }

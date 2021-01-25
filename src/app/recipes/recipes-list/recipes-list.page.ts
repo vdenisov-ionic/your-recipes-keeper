@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 import { Recipe } from 'src/app/@core/recipe.model';
 import { RecipesService } from 'src/app/@core/recipes.service';
@@ -10,16 +10,12 @@ import { RecipesService } from 'src/app/@core/recipes.service';
   styleUrls: ['./recipes-list.page.scss'],
 })
 export class RecipesListPage implements OnInit, OnDestroy {
-  recipes: Recipe[];
+  public recipes: Recipe[];
 
   constructor(
-    private router: Router,
     private recipesService: RecipesService,
+    public navCtrl: NavController,
   ) { }
-
-  ionViewWillEnter() {
-    this.ngOnInit();
-  }
 
   ngOnInit() {
     console.log('*** [recipes-list] OnInit');
@@ -31,6 +27,7 @@ export class RecipesListPage implements OnInit, OnDestroy {
   }
 
   public onSelectRecipe(recipeId: string): void {
-    this.router.navigate([`/recipes/${recipeId}`]);
+    // this.router.navigate([`/recipes/${recipeId}`]);
+    this.navCtrl.navigateRoot(`/recipes/${recipeId}`);
   }
 }
