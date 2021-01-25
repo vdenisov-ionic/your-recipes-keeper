@@ -1,9 +1,27 @@
 {
   "name": "ionic-angular-course",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "description": "An Ionic project",
   "homepage": "https://ionicframework.com/",
+  "author": "Ionic Framework",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
+    "ion:start": "ionic serve",
+    "ion:start:ios": "ionic capacitor run ios --livereload --external",
+    "ion:start:android": "ionic capacitor run android --livereload --external",
+
+    "ion:build": "ionic build",
+    "ion:build:ios": "ionic capacitor add ios",
+    "ion:build:android": "ionic capacitor add android",
+
+    "ion:update": "ionic capacitor copy",
+    "ion:update:ios": "ionic capacitor copy ios",
+    "ion:update:android": "ionic capacitor copy android",
+
+    "ion:lab": "ionic serve --lab",
+
+    "----------": "----------",
+
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -11,7 +29,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "~10.0.0",
     "@angular/core": "~10.0.0",
@@ -52,6 +69,5 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"
-  },
-  "description": "An Ionic project"
+  }
 }
